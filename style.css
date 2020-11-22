@@ -1,4 +1,11 @@
-button {
+.content {
+  max-width: 500px;
+  margin: auto;
+  background: white;
+  padding: 10px;
+}
+
+.button {
   background-color: white;
   border: 2px solid #e7e7e7;
   color: black;
@@ -11,4 +18,4 @@ button {
   border-radius: 12px;
 }
 
-button:hover {background-color: #e7e7e7;}
+.button:hover {background-color: #e7e7e7;}
