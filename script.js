@@ -18,5 +18,16 @@ function homepage()
 
 function login()
 {
+  var htmlPage =
+  "<div id=\"content\">" +
+    "<form id=\"loginForm\">" +
+      "<input type=\"text\" name=\"username\" id=\"usernameField\" placeholder=\"username\">" +
+      "<input type=\"password\" name=\"password\" id=\"passwordField\" placeholder=\"password\">" +
+      "<input type=\"submit\" value=\"login\" id=\"login\">" +
+    "</form>" +
+"" +
+    "<button class=\"button\" id=\"createAccount\">Don't have an account? Register</button>" +
+  "</div>"
 
+  pageBody[0].innerHTML = htmlPage;
 }
