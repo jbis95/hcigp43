@@ -38,7 +38,7 @@ function formAddElement(formID, elemID, elemType, defaultVal, label){
   formElemNode.setAttribute("type", elemType);
   formElemNode.setAttribute("name", elemID);
   formElemNode.setAttribute("value", defaultVal);
-  
+
   if (label != false){
     var formElemLabelNode = document.createElement("label");
     formElemLabelNode.setAttribute("for", elemID);
@@ -85,12 +85,12 @@ function displayLoginPage() {
   uNameBox.autocomplete = true;
   //newLoginForm.appendChild("BR");
   formAddElement("loginForm", "pass", "password", "letMeIn!", "Password: ")
-  
+
   var submitBtn = formAddElement("loginForm", "submitBtn", "submit", "LetMeIn!!!", false)
   submitBtn.setAttribute("onclick", 'displayUserAccount()');
   //var loginBtn = document.getElementById('loginBtn')
   //loginBtn.style.display = "block";
-  
+
 }
 
 function displayUserAccount() {
@@ -104,15 +104,15 @@ function displayTOS() {
   //hideWelcomePage();
   headerCol.innerText = "Terms of Use:";
   headerCol.style.display = "block";
-  
+
   //var terms = '<h1 id="terms" name="terms">"terms, terms,....., blah"</h1>';
   var termsNode = document.createElement("div");
   termsNode.setAttribute("id", "tosArea");
   middleCol.appendChild(termsNode);
-  
+
   var agreeBtn = createButton("acceptBtn", "Accept", 'hideTOSPage();displayMapPage()', false);
   var termsTextNode = document.createElement("textarea");
-  
+
   termsNode.appendChild(termsTextNode);
   termsNode.appendChild(agreeBtn);
   termsTextNode.readOnly = true;
@@ -129,7 +129,7 @@ function displayTOS() {
     }
   });
   termsTextNode.innerHTML = "<pre>These are our terms of service.......<br>These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......These are our terms of service.......</pre>";
-  
+
 }
 
 function hideTOSPage() {
@@ -140,12 +140,12 @@ function hideTOSPage() {
 function displayMapPage() {
   headerCol.innerText = "Select Your Location: ";
   headerCol.style.display = "block";
-  
+
   /*var locationSearchNode = document.createElement("div");
   locationSearchNode.setAttribute("id", "locationSearchArea");
   middleCol.appendChild(locationSearchNode);
   */
-  
+
   var addressSearchForm = createForm("addressForm", true)
   middleCol.appendChild(addressSearchForm);
   /* adding address entry field and auto. location detect button to the addressForm*/
@@ -153,7 +153,7 @@ function displayMapPage() {
   addressEntryBox.setAttribute("class", "searchBox");
   addressEntryBox.placeholder = "Enter Delivery Address...";
   addressEntryBox.autocomplete = true;
-  
+
   var gpsBtn = formAddElement("addressForm", "gpsBtn", "submit", "Use GPS", false)
   gpsBtn.setAttribute("onclick", 'displayMap();');
 }
@@ -166,7 +166,7 @@ function displayMap() {
   mapImgNode.setAttribute("alt", "University of Manitoba on Map of Winnipeg");
   var addressSearchForm = document.getElementById("addressForm");
   addressSearchForm.appendChild(mapImgNode);
-  
+
   var submitBtn = formAddElement("addressForm", "submitBtn", "submit", "Continue", false)
   submitBtn.setAttribute("onclick", 'hideMapPage();displaySearchModeSelPage()');
 }
@@ -179,7 +179,7 @@ function hideMapPage() {
 function displaySearchModeSelPage() {
   headerCol.innerText = "Preferred Search Mode: ";
   headerCol.style.display = "block";
-  
+
   var discoverBtn = createButton("discoverBtn", "Discover", 'hideSearchModeSelPage();displayDiscoverPage()', "newLine")
   var findSpecificBtn = createButton("findSpecificBtn", "Find Something Specific", 'hideSearchModeSelPage();displayMealTargetCustPage()', "newLine")
   middleCol.appendChild(discoverBtn);
@@ -195,8 +195,24 @@ function hideSearchModeSelPage() {
 function displayDiscoverPage() {
   headerCol.innerText = "Welcome to Discovery Mode: ";
   headerCol.style.display = "block";
-  alert("Welcome to Discovery Mode");
+  var offersList = ["50% off!", "20% off!", "10% off!", "5% off!"];
+
   leftCol.style.visibility = "visible"
+  var offersNode = document.createElement("div");
+  offersNode.setAttribute("id", "offersArea");
+  leftCol.appendChild(offersNode);
+
+  for(var i = 0; i < offersList.length; i++)
+  {
+    var offerElemnt = document.createElement("img");
+    offerElemnt.setAttribute("src", "map.png");
+    offersNode.appendChild(offerElemnt);
+
+    var offerElemntBtn = createButton("offerElemntBtn" + i, offersList[i], displayMap(), "newLine")
+    offersNode.appendChild(offerElemntBtn);
+  }
+
+
   rightCol.style.visibility = "visible"
 }
 
@@ -206,21 +222,21 @@ function displayMealTargetCustPage() {
   leftCol.style.visibility = "visible"
   leftCol.innerHTML = "<u><b>Meal Manager</b></u>";
   rightCol.style.visibility = "visible"
-  
+
   var allergyForm = createForm("allergyForm", true);
   middleCol.appendChild(allergyForm);
   /* adding labels and check boxes to the allergy form*/
   var allergyTitleNode = document.createElement("h4");
   allergyTitleNode.innerHTML = "<b>Select Any Allegies That Apply </b>"
   allergyForm.appendChild(allergyTitleNode);
-  
+
   var allergies = ["soybeans", "peanuts", "tree nuts", "wheat", "shellfish", "milk", "eggs"]
   //var i;
   //var len = allergies.length;
   for (var i=0; i<allergies.length; i++){
 	allergies[i] = formAddElement("allergyForm", allergies[i]+"ChkBox", "checkbox", allergies[i], allergies[i])
   }
-  
+
   //var submitBtn = formAddElement("loginForm", "submitBtn", "submit", "LetMeIn!!!", false)
   //submitBtn.setAttribute("onclick", 'displayUserAccount()');
 }
