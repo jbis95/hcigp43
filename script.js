@@ -195,7 +195,7 @@ function hideSearchModeSelPage() {
 function displayDiscoverPage() {
   headerCol.innerText = "Welcome to Discovery Mode: ";
   headerCol.style.display = "block";
-  var offersList = ["50% off!", "20% off!", "10% off!", "5% off!"];
+  var offersList = ["50% off!", "20% off!", "10% off!", "5% off!"]; //replace with actual offers
 
   leftCol.style.visibility = "visible"
   var offersNode = document.createElement("div");
@@ -205,15 +205,16 @@ function displayDiscoverPage() {
   for(var i = 0; i < offersList.length; i++)
   {
     var offerElemnt = document.createElement("img");
-    offerElemnt.setAttribute("src", "map.png");
+    offerElemnt.setAttribute("src", "map.png"); //replace with images from actual offers
     offersNode.appendChild(offerElemnt);
 
     var offerElemntBtn = createButton("offerElemntBtn" + i, offersList[i], displayMap(), "newLine")
     offersNode.appendChild(offerElemntBtn);
   }
 
-
   rightCol.style.visibility = "visible"
+
+
 }
 
 function displayMealTargetCustPage() {
