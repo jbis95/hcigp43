@@ -1,25 +1,113 @@
-.content {
-  max-width: 500px;
-  margin: auto;
-  background: white;
-  padding: 10px;
+/* class of page elements that are currently hidden */
+/*h1.hidden {
+  display: none;
+}*/
+
+/* arrange div elements (header,footer,left,middle,right) in the grid container */
+.grid-container {
+  display: grid;
+  grid-template-areas: 
+    'header header header header header header' 
+    'left middle middle middle middle right' 
+    'footer footer footer footer footer footer';
+  /* grid-column-gap: 10px; - if you want gap between the columns */
+} 
+
+/* Style the header */
+.header {
+  grid-area: header;
+  background-color: #f1f1f1;
+  padding: 2vw;
+  text-align: center;
+  font-size: 4vw;
 }
 
-.button {
+h1 {
+  font-size: 4vw;
+  text-align: center;
+}
+
+.left,
+.middle,
+.right {
+  padding: 10px;
+  text-align: center;
+  /*height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Style the left column */
+.left {
+  grid-area: left;
+}
+
+/* Style the middle column */
+.middle {
+  grid-area: middle;
+}
+
+/* Style the right column */
+.right {
+  grid-area: right;
+}
+
+/* Style the footer */
+.footer {
+  grid-area: footer;
+  background-color: #f1f1f1;
+  padding: 10px;
+  text-align: center;
+}
+
+button {
+  /* outline area options*/
+  /*outline: 5px solid yellow;*/
+  
+  /* background options*/
   background-color: white;
-  border: 2px solid #e7e7e7;
+  
+  /* margin area options*/
+  margin: auto;
+  
+  /* border area options*/
+  border: 6px thick #010101;
+  /*border-radius: 12px;*/
+  
+  /* padding area options*/
+  /*padding: 15px 32px;*/
+  
+  /* text/content area options*/
   color: black;
-  padding: 15px 32px;
   text-align: center;
   text-decoration: none;
+  font-size: 2vw;
+  
+  width: 50%;
   display: inline-block;
-  font-size: 16px;
+  
   transition-transition: 0.4s;
-  border-radius: 12px;
 }
 
-.button:hover {background-color: #e7e7e7;}
+button:hover, button:active {
+  /*background-color: #e7e7e7;*/
+  text-shadow: 2px 2px 5px orange;
+}
 
-textarea {
-  resize: none;
+.searchBox {
+  width: 50%;
+  box-sizing: border-box;
+  border: 0.5vw solid #ccc;
+  /*border-radius: 1vw;*/
+  font-size: 1.5vw;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  
+  background-color: white;
+  /*background-image: url('searchicon.png');*/
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  /*padding: 12px 20px 12px 40px;*/
+}
+
+.searchBox:focus {
+  border: 0.5vw solid #555
 }

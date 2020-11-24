@@ -3,12 +3,46 @@
 
 <head>
   <title>Milestone 3</title>
-
   <link rel="stylesheet" href="style.css">
-  <script src="script.js"></script>
+  <meta charset="UTF-8">
+  <meta name="description" content="HCI Project Milestone 3 Group 43">
+  <meta name="author" content="Nikola Kokilev">
+  <!--<meta http-equiv="refresh" content="30"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
 </head>
 
-<body onload="homepage()">
+<body>
+  <div class="grid-container">
+    <div class="header">
+      Welcome To Group 43's Online Food Ordering Website
+	</div>
 
+    <div class="middle">
+	  <!--<button style="display: block; margin: auto; font-size: 2vw; width: 50%;" type="button" id="loginBtn" onclick=hideWelcomePage();displayLoginPage()>Login</button>
+      <button style="display: block; margin: auto; font-size: 2vw; width: 50%;" type="button" id="browseFreelyBtn" onclick=hideWelcomePage();displayTOS()>Browse Freely</button>
+	  -->
+      <!-- Replaced form with div since we are not sending the login info to a server -->
+	  <!--
+      <div style="display: none;" id="loginForm" >
+        <label for="uName">User Name:</label><br>
+        <input type="text" id="uName" name="uName" value="Alice"><br>
+        <label for="pass">Password:</label><br>
+        <input type="password" id="pass" name="pass" value="password"><br><br>
+        <input type="submit" value="Login" onclick=displayUserAccount()>
+      </div>
+	  -->
+	</div>
+    
+	<div class="left" style="visibility:hidden; background-color:#aaa;"><u><b>Offers</b></u></div>
+	<div class="right" style="visibility:hidden; background-color:#ccc;"><u><b>Points</b></u></div>
+	
+	<div class="footer">
+      <p>Footer</p>
+    </div>
+    <script src="script.js"></script>
+    <script>displayWelcomePage();</script>
+  </div>
 </body>
+
 </html>
