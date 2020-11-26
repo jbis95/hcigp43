@@ -195,9 +195,9 @@ function hideSearchModeSelPage() {
 function displayDiscoverPage() {
   headerCol.innerText = "Welcome to Discovery Mode: ";
   headerCol.style.display = "block";
-  var offersList = ["50% off!", "20% off!", "10% off!", "5% off!"]; //replace with actual offers
+  var offersList = ["50% off", "20% off", "10% off", "5% off"]; //replace with actual offers
 
-  leftCol.style.visibility = "visible"
+  leftCol.style.visibility = "visible";
   var offersNode = document.createElement("div");
   offersNode.setAttribute("id", "offersArea");
   leftCol.appendChild(offersNode);
@@ -205,20 +205,24 @@ function displayDiscoverPage() {
   for(var i = 0; i < offersList.length; i++)
   {
     var offerElemnt = document.createElement("img");
-    offerElemnt.setAttribute("src", "map.png"); //replace with images from actual offers
+    offerElemnt.setAttribute("src", "Offers/" + offersList[i] + ".png"); //replace with images from actual offers
     offersNode.appendChild(offerElemnt);
 
     var offerElemntBtn = createButton("offerElemntBtn" + i, offersList[i], displayMap(), "newLine");
     offersNode.appendChild(offerElemntBtn);
   }
 
-  rightCol.style.visibility = "visible"
+  rightCol.style.visibility = "visible";
   var pointsNode = document.createElement("div");
   pointsNode.setAttribute("id", "pointsArea");
   rightCol.appendChild(pointsNode);
 
   var pointElemntBtn = createButton("pointElemntBtn", "Login", displayMap(), "newLine");
   pointsNode.appendChild(pointElemntBtn);
+
+  middleCol.style.visibility = "visible";
+  middleCol.innerText = "What are you looking for?";
+
 
 }
 
