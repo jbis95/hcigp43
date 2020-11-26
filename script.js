@@ -208,12 +208,17 @@ function displayDiscoverPage() {
     offerElemnt.setAttribute("src", "map.png"); //replace with images from actual offers
     offersNode.appendChild(offerElemnt);
 
-    var offerElemntBtn = createButton("offerElemntBtn" + i, offersList[i], displayMap(), "newLine")
+    var offerElemntBtn = createButton("offerElemntBtn" + i, offersList[i], displayMap(), "newLine");
     offersNode.appendChild(offerElemntBtn);
   }
 
   rightCol.style.visibility = "visible"
+  var pointsNode = document.createElement("div");
+  pointsNode.setAttribute("id", "pointsArea");
+  rightCol.appendChild(pointsNode);
 
+  var pointElemntBtn = createButton("pointElemntBtn", "Login", displayMap(), "newLine");
+  pointsNode.appendChild(pointElemntBtn);
 
 }
 
