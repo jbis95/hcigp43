@@ -205,7 +205,7 @@ function displayDiscoverPage() {
   for(var i = 0; i < offersList.length; i++)
   {
     var offerElemnt = document.createElement("img");
-    offerElemnt.setAttribute("src", "Offers/" + offersList[i] + ".png"); //replace with images from actual offers
+    offerElemnt.setAttribute("src", "images/" + offersList[i] + ".png"); //replace with images from actual offers
     offersNode.appendChild(offerElemnt);
 
     var offerElemntBtn = createButton("offerElemntBtn" + i, offersList[i], displayMap(), "newLine");
@@ -222,8 +222,19 @@ function displayDiscoverPage() {
 
   middleCol.style.visibility = "visible";
   middleCol.innerText = "What are you looking for?";
+/*
+  var gridNode = document.createElement("div");
+  gridNode.setAttribute("class", "menuCategories");
+  middleCol.appendChild(gridNode);
 
-
+  for(var i = 0; i < 8; i++)
+  {
+    var gridElemnt = document.createElement("div");
+    gridElemnt.setAttribute("class", "menuElemnt");
+    gridElemnt.innerText("1");
+    gridNode.appendChild(gridElemnt);
+  }
+*/
 }
 
 function displayMealTargetCustPage() {
