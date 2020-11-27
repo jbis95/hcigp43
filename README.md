@@ -1,4 +1,4 @@
 # hcigp43
 
-#How to run
+# How to run
 Open index.html in a browser, from there everything is accessible.
