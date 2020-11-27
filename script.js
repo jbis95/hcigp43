@@ -4,6 +4,21 @@ var middleCol = document.getElementsByClassName("middle")[0];
 var leftCol = document.getElementsByClassName("left")[0];
 var rightCol = document.getElementsByClassName("right")[0];
 
+var nutrients = ["calories", "sugars", "fats", "carbohydrates", "proteins", "calcium", "iron"];
+var currNutrientIndex;
+
+//var checkMarkImgNode = document.createElement("img");
+//checkMarkImgNode.setAttribute("src", "images/checkMark.png");
+//checkMarkImgNode.setAttribute("alt", "under quota indicator");
+
+var equalsImgNode = document.createElement("img");
+equalsImgNode.setAttribute("src", "images/equals.png");
+equalsImgNode.setAttribute("alt", "reached quota indicator");
+
+var xMarkImgNode = document.createElement("img");
+xMarkImgNode.setAttribute("src", "images/xMark.png");
+xMarkImgNode.setAttribute("alt", "exceeded quota indicator");
+
 function createButton(btnID, textInside, clickAction, show) {
   var btnNode = document.createElement("button");
   var btnTextNode = document.createTextNode(textInside);
@@ -43,9 +58,17 @@ function formAddElement(formID, elemID, elemType, defaultVal, label){
     var formElemLabelNode = document.createElement("label");
     formElemLabelNode.setAttribute("for", elemID);
     formElemLabelNode.innerHTML = label;
+	//if a checkbox or radio button is being added to currForm add it before the label
+	if (elemType == "radio" || elemType == "checkbox"){
+      currForm.appendChild(formElemNode);
+    }
     currForm.appendChild(formElemLabelNode);
   }
-  currForm.appendChild(formElemNode);
+  
+  //if a checkbox or radio button is being added to currForm do not add it after the label
+  if (elemType != "radio" && elemType != "checkbox"){
+    currForm.appendChild(formElemNode);
+  }
   //<label for="uName">User Name:</label><br>
   //<input type="text" id="uName" name="uName" value="Alice"><br>
   return formElemNode
@@ -162,7 +185,7 @@ function displayMap() {
   var addressEntryBox = document.getElementById("addressEntryBox");
   addressEntryBox.setAttribute("value", "66 Chancellor\'s Circle Winnipeg, MB R3T 2N2");
   var mapImgNode = document.createElement("img");
-  mapImgNode.setAttribute("src", "map.png");
+  mapImgNode.setAttribute("src", "images/map.png");
   mapImgNode.setAttribute("alt", "University of Manitoba on Map of Winnipeg");
   var addressSearchForm = document.getElementById("addressForm");
   addressSearchForm.appendChild(mapImgNode);
@@ -251,13 +274,225 @@ function displayMealTargetCustPage() {
   allergyTitleNode.innerHTML = "<b>Select Any Allegies That Apply </b>"
   allergyForm.appendChild(allergyTitleNode);
 
-  var allergies = ["soybeans", "peanuts", "tree nuts", "wheat", "shellfish", "milk", "eggs"]
-  //var i;
-  //var len = allergies.length;
+  var allergies = ["soybeans", "peanuts", "tree nuts", "wheat", "shellfish", "milk", "eggs"];
+  
   for (var i=0; i<allergies.length; i++){
-	allergies[i] = formAddElement("allergyForm", allergies[i]+"ChkBox", "checkbox", allergies[i], allergies[i])
+	allergies[i] = formAddElement("allergyForm", allergies[i]+"ChkBox", "checkbox", allergies[i], allergies[i]);
   }
+  
+  
+  var dietTypeForm = createForm("dietTypeForm", true);
+  middleCol.appendChild(dietTypeForm);
+  /* adding labels and check boxes to the diet type form*/
+  var dietTitleNode = document.createElement("h4");
+  dietTitleNode.innerHTML = "<b>Select Your Diet Type </b>"
+  dietTypeForm.appendChild(dietTitleNode);
 
-  //var submitBtn = formAddElement("loginForm", "submitBtn", "submit", "LetMeIn!!!", false)
+  var diets = ["vegan", "vegetarian", "pescetarian", "meat lover", "lover of all edibles", "raw foods", "keto"];
+  
+  for (var i=0; i<diets.length; i++){
+	diets[i] = formAddElement("dietTypeForm", diets[i]+"RadioBtn", "radio", diets[i], diets[i]);
+	diets[i].name = "dietType"; // giving all radio buttons the same name in order to group them together
+  }
+  
+  
+  var nutrientQuotasForm = createForm("nutrientQuotasForm", true);
+  middleCol.appendChild(nutrientQuotasForm);
+  /* adding labels and check boxes to the nutrient quotas form*/
+  var nutQuotasTitleNode = document.createElement("h4");
+  nutQuotasTitleNode.innerHTML = "<b>Adjust your nutrient quotas for this order </b>"
+  nutrientQuotasForm.appendChild(nutQuotasTitleNode);
+
+  //var nutrients = ["calories", "sugars", "fats", "carbohydrates", "proteins", "calcium", "iron"];
+  var nutrientSliderNodes = [];
+  for (var i=0; i<nutrients.length; i++){
+	//creating a slider for the nutrient specified
+	var newNutrientNode = formAddElement("nutrientQuotasForm", nutrients[i]+"Slider", "range", 500, nutrients[i]+":");
+	nutrientSliderNodes.push(newNutrientNode);
+	//diets[i].name = "dietType"
+	nutrientSliderNodes[i].setAttribute("id", nutrients[i]+"Slider");
+	nutrientSliderNodes[i].setAttribute("class", "slider");
+	nutrientSliderNodes[i].setAttribute("title", nutrients[i].value);
+	nutrientSliderNodes[i].setAttribute("min", 0);
+	nutrientSliderNodes[i].setAttribute("max", 2000);
+	nutrientSliderNodes[i].setAttribute("value", 500);
+	nutrientSliderNodes[i].setAttribute("step", 1);
+	
+	//create a box that will appear above the new slider's current position and display the value that the nutrient represented by the slider is set to 
+	var sliderValNode = document.createElement("div");
+	sliderValNode.setAttribute("id", nutrients[i]+"SliderVal");
+	sliderValNode.setAttribute("class", "sliderVal");
+	nutrientQuotasForm.appendChild(sliderValNode);
+	
+	//calling this function sets/updates the value displayed above the slider
+	var setValue = ()=>{
+	  //alert (i);
+	  var currNutrientSliderID = nutrients[currNutrientIndex]+"Slider";
+	  var currNutrientSliderNode = document.getElementById(currNutrientSliderID);
+	  //alert(currNutrientID);
+	  //alert(currNutrient);
+	  //alert(currNutrient.value);
+      //const
+	  //var newValue = currNutrient.value;
+      var newValue = Number( (currNutrientSliderNode.value - currNutrientSliderNode.min) * 100 / (currNutrientSliderNode.max - currNutrientSliderNode.min) );
+      var newPosition = 10 - (newValue * 0.2);
+	  
+	  var currNutrientSliderValNode = document.getElementById(currNutrientSliderID+"Val");
+      currNutrientSliderValNode.innerHTML = `<span>${currNutrientSliderNode.value}</span>`;
+      currNutrientSliderValNode.style.left = `calc(${newValue}% + (${newPosition}px))`;
+    };
+	
+	currNutrientIndex = i;
+	//set the initial value above the slider.
+	document.addEventListener("DOMContentLoaded", setValue());
+	//add an event listener which will update the current value displayed whenever the user adjusts the slider
+	nutrientSliderNodes[i].addEventListener('input', setValue);
+	//nutrients[i].oninput = setValue();
+	
+  }//end of for loop
+  
+  var submitBtn = createButton("custMenuTargetsSubmitBtn", "Continue", 'hideMealTargetCustPage();displayCustomMenu();createMealManagerSidebar()', "newLine");
+  middleCol.appendChild(submitBtn);
+  //var submitBtn = formAddElement("nutrientQuotasForm", "submitBtn", "submit", "Continue", false)
   //submitBtn.setAttribute("onclick", 'displayUserAccount()');
+}
+
+function hideMealTargetCustPage() {
+  headerCol.style.display = "none";
+  document.getElementById("allergyForm").style.display = "none";
+  document.getElementById("dietTypeForm").style.display = "none";
+  document.getElementById("nutrientQuotasForm").style.display = "none";
+  document.getElementById("custMenuTargetsSubmitBtn").style.display = "none";
+}
+
+function createMealManagerSidebar() {
+  for (var i=0; i<nutrients.length; i++) {
+    var currNutrientSliderID = nutrients[i]+"Slider";
+	var currNutrientSliderNode = document.getElementById(currNutrientSliderID);
+	//var currNutrientSliderValNode = document.getElementById(currNutrientSliderID+"Val");
+	//alert (currNutrientSliderNode.value);
+	//if (i == nutrients.length-1){
+	//  alert (currNutrientSliderNode.value);
+	//}
+	
+	var nutrientTrackerNode = document.createElement("div");
+    nutrientTrackerNode.setAttribute("id", nutrients[i]+"TrackerArea");
+    leftCol.appendChild(nutrientTrackerNode);
+	
+	var nutrientTitleNode = document.createElement("h4");
+    nutrientTitleNode.innerHTML = nutrients[i];
+	nutrientTrackerNode.appendChild(nutrientTitleNode);
+	
+	
+	var checkMarkImgNode = document.createElement("img");
+    checkMarkImgNode.setAttribute("src", "images/checkMark.png");
+    checkMarkImgNode.setAttribute("alt", "under quota indicator");
+	nutrientTrackerNode.appendChild(checkMarkImgNode);
+	
+	
+	var nutrientStatusListNode = document.createElement("ul");
+    //nutrientStatusListNode.setAttribute("id", nutrients[i]+"StatusList");
+	nutrientTrackerNode.appendChild(nutrientStatusListNode);
+	
+	var nutrientCurrAmount = document.createElement("li");
+	nutrientCurrAmount.innerHTML = "0 added";
+	
+	var nutrientRemainAmount = document.createElement("li");
+	nutrientRemainAmount.innerHTML = currNutrientSliderNode.value+" left"
+	
+	nutrientStatusListNode.appendChild(nutrientCurrAmount);
+	nutrientStatusListNode.appendChild(nutrientRemainAmount);
+  }
+}
+
+function displayCustomMenu() {
+  
+  var customMenuNode = document.createElement("div");
+  customMenuNode.setAttribute("id", "customMenuArea");
+  middleCol.appendChild(customMenuNode);
+  
+  //creating and adding title above the menu
+  var menuTitleNode = document.createElement("h2");
+  menuTitleNode.innerHTML = "<b>Your Personalized Menu </b>"
+  customMenuNode.appendChild(menuTitleNode);
+  
+  //diplaying the custom menu and defining its clickable areas using an image map
+  var menuImgNode = document.createElement("img");
+  menuImgNode.setAttribute("src", "images/menu.png");
+  menuImgNode.setAttribute("alt", "Custom Menu");
+  menuImgNode.setAttribute("usemap", "#CustomMenu");
+  customMenuNode.appendChild(menuImgNode);
+  
+  
+  var menuImgMapNode = document.createElement("map");
+  menuImgMapNode.setAttribute("name", "#CustomMenu");
+  
+  var breakfastLinkNode = document.createElement("area");
+  breakfastLinkNode.setAttribute("shape", "rect");
+  breakfastLinkNode.setAttribute("coords", "315,259,470,214");
+  breakfastLinkNode.setAttribute("onclick", "displayMenu('breakfast')");
+  menuImgMapNode.appendChild(breakfastLinkNode);
+  
+  var lunchLinkNode = document.createElement("area");
+  lunchLinkNode.setAttribute("shape", "rect");
+  lunchLinkNode.setAttribute("coords", "338,284,440,329");
+  lunchLinkNode.setAttribute("onclick", "displayMenu('lunch')");
+  menuImgMapNode.appendChild(lunchLinkNode);
+  
+  var snacksLinkNode = document.createElement("area");
+  snacksLinkNode.setAttribute("shape", "rect");
+  snacksLinkNode.setAttribute("coords", "336,352,450,397");
+  snacksLinkNode.setAttribute("onclick", "displayMenu('snacks')");
+  menuImgMapNode.appendChild(snacksLinkNode);
+  
+  var dinnerLinkNode = document.createElement("area");
+  dinnerLinkNode.setAttribute("shape", "rect");
+  dinnerLinkNode.setAttribute("coords", "335,416,450,464");
+  dinnerLinkNode.setAttribute("onclick", "displayMenu('dinner')");
+  menuImgMapNode.appendChild(dinnerLinkNode);
+  
+  var drinksLinkNode = document.createElement("area");
+  drinksLinkNode.setAttribute("shape", "rect");
+  drinksLinkNode.setAttribute("coords", "333,484,448,534");
+  drinksLinkNode.setAttribute("onclick", "displayMenu('drinks')");
+  menuImgMapNode.appendChild(drinksLinkNode);
+  
+  var specialsLinkNode = document.createElement("area");
+  specialsLinkNode.setAttribute("shape", "rect");
+  specialsLinkNode.setAttribute("coords", "328,556,458,599");
+  specialsLinkNode.setAttribute("onclick", "displayMenu('specials')");
+  menuImgMapNode.appendChild(specialsLinkNode);
+  
+  customMenuNode.appendChild(menuImgMapNode);
+}
+
+function displayMenu(menuType) {
+  switch(menuType) {
+    case 'breakfast':
+	  alert("here is your breakfast menu");
+	  break;
+	
+	case 'lunch':
+	  alert("here is your lunch menu");
+	  break;
+	
+	case 'snacks':
+	  alert("here is your snacks menu");
+	  break;
+	
+	case 'dinner':
+	  alert("here is your dinner menu");
+	  break;
+	  
+	case 'drinks':
+	  alert("here is your drink menu");
+	  break;
+	
+	case 'specials':
+	  alert("here is your specials menu");
+	  break;
+	 
+	default:
+	  alert("error occured when generating personalized menu. Please click on 'Go Back'");
+  }
 }
