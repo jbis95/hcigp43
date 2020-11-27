@@ -64,7 +64,7 @@ function formAddElement(formID, elemID, elemType, defaultVal, label){
     }
     currForm.appendChild(formElemLabelNode);
   }
-  
+
   //if a checkbox or radio button is being added to currForm do not add it after the label
   if (elemType != "radio" && elemType != "checkbox"){
     currForm.appendChild(formElemNode);
@@ -275,12 +275,12 @@ function displayMealTargetCustPage() {
   allergyForm.appendChild(allergyTitleNode);
 
   var allergies = ["soybeans", "peanuts", "tree nuts", "wheat", "shellfish", "milk", "eggs"];
-  
+
   for (var i=0; i<allergies.length; i++){
 	allergies[i] = formAddElement("allergyForm", allergies[i]+"ChkBox", "checkbox", allergies[i], allergies[i]);
   }
-  
-  
+
+
   var dietTypeForm = createForm("dietTypeForm", true);
   middleCol.appendChild(dietTypeForm);
   /* adding labels and check boxes to the diet type form*/
@@ -289,13 +289,13 @@ function displayMealTargetCustPage() {
   dietTypeForm.appendChild(dietTitleNode);
 
   var diets = ["vegan", "vegetarian", "pescetarian", "meat lover", "lover of all edibles", "raw foods", "keto"];
-  
+
   for (var i=0; i<diets.length; i++){
 	diets[i] = formAddElement("dietTypeForm", diets[i]+"RadioBtn", "radio", diets[i], diets[i]);
 	diets[i].name = "dietType"; // giving all radio buttons the same name in order to group them together
   }
-  
-  
+
+
   var nutrientQuotasForm = createForm("nutrientQuotasForm", true);
   middleCol.appendChild(nutrientQuotasForm);
   /* adding labels and check boxes to the nutrient quotas form*/
@@ -317,13 +317,13 @@ function displayMealTargetCustPage() {
 	nutrientSliderNodes[i].setAttribute("max", 2000);
 	nutrientSliderNodes[i].setAttribute("value", 500);
 	nutrientSliderNodes[i].setAttribute("step", 1);
-	
-	//create a box that will appear above the new slider's current position and display the value that the nutrient represented by the slider is set to 
+
+	//create a box that will appear above the new slider's current position and display the value that the nutrient represented by the slider is set to
 	var sliderValNode = document.createElement("div");
 	sliderValNode.setAttribute("id", nutrients[i]+"SliderVal");
 	sliderValNode.setAttribute("class", "sliderVal");
 	nutrientQuotasForm.appendChild(sliderValNode);
-	
+
 	//calling this function sets/updates the value displayed above the slider
 	var setValue = ()=>{
 	  //alert (i);
@@ -336,21 +336,21 @@ function displayMealTargetCustPage() {
 	  //var newValue = currNutrient.value;
       var newValue = Number( (currNutrientSliderNode.value - currNutrientSliderNode.min) * 100 / (currNutrientSliderNode.max - currNutrientSliderNode.min) );
       var newPosition = 10 - (newValue * 0.2);
-	  
+
 	  var currNutrientSliderValNode = document.getElementById(currNutrientSliderID+"Val");
       currNutrientSliderValNode.innerHTML = `<span>${currNutrientSliderNode.value}</span>`;
       currNutrientSliderValNode.style.left = `calc(${newValue}% + (${newPosition}px))`;
     };
-	
+
 	currNutrientIndex = i;
 	//set the initial value above the slider.
 	document.addEventListener("DOMContentLoaded", setValue());
 	//add an event listener which will update the current value displayed whenever the user adjusts the slider
 	nutrientSliderNodes[i].addEventListener('input', setValue);
 	//nutrients[i].oninput = setValue();
-	
+
   }//end of for loop
-  
+
   var submitBtn = createButton("custMenuTargetsSubmitBtn", "Continue", 'hideMealTargetCustPage();displayCustomMenu();createMealManagerSidebar()', "newLine");
   middleCol.appendChild(submitBtn);
   //var submitBtn = formAddElement("nutrientQuotasForm", "submitBtn", "submit", "Continue", false)
@@ -374,95 +374,95 @@ function createMealManagerSidebar() {
 	//if (i == nutrients.length-1){
 	//  alert (currNutrientSliderNode.value);
 	//}
-	
+
 	var nutrientTrackerNode = document.createElement("div");
     nutrientTrackerNode.setAttribute("id", nutrients[i]+"TrackerArea");
     leftCol.appendChild(nutrientTrackerNode);
-	
+
 	var nutrientTitleNode = document.createElement("h4");
     nutrientTitleNode.innerHTML = nutrients[i];
 	nutrientTrackerNode.appendChild(nutrientTitleNode);
-	
-	
+
+
 	var checkMarkImgNode = document.createElement("img");
     checkMarkImgNode.setAttribute("src", "images/checkMark.png");
     checkMarkImgNode.setAttribute("alt", "under quota indicator");
 	nutrientTrackerNode.appendChild(checkMarkImgNode);
-	
-	
+
+
 	var nutrientStatusListNode = document.createElement("ul");
     //nutrientStatusListNode.setAttribute("id", nutrients[i]+"StatusList");
 	nutrientTrackerNode.appendChild(nutrientStatusListNode);
-	
+
 	var nutrientCurrAmount = document.createElement("li");
 	nutrientCurrAmount.innerHTML = "0 added";
-	
+
 	var nutrientRemainAmount = document.createElement("li");
 	nutrientRemainAmount.innerHTML = currNutrientSliderNode.value+" left"
-	
+
 	nutrientStatusListNode.appendChild(nutrientCurrAmount);
 	nutrientStatusListNode.appendChild(nutrientRemainAmount);
   }
 }
 
 function displayCustomMenu() {
-  
+
   var customMenuNode = document.createElement("div");
   customMenuNode.setAttribute("id", "customMenuArea");
   middleCol.appendChild(customMenuNode);
-  
+
   //creating and adding title above the menu
   var menuTitleNode = document.createElement("h2");
   menuTitleNode.innerHTML = "<b>Your Personalized Menu </b>"
   customMenuNode.appendChild(menuTitleNode);
-  
+
   //diplaying the custom menu and defining its clickable areas using an image map
   var menuImgNode = document.createElement("img");
   menuImgNode.setAttribute("src", "images/menu.png");
   menuImgNode.setAttribute("alt", "Custom Menu");
   menuImgNode.setAttribute("usemap", "#CustomMenu");
   customMenuNode.appendChild(menuImgNode);
-  
-  
+
+
   var menuImgMapNode = document.createElement("map");
   menuImgMapNode.setAttribute("name", "#CustomMenu");
-  
+
   var breakfastLinkNode = document.createElement("area");
   breakfastLinkNode.setAttribute("shape", "rect");
   breakfastLinkNode.setAttribute("coords", "315,259,470,214");
   breakfastLinkNode.setAttribute("onclick", "displayMenu('breakfast')");
   menuImgMapNode.appendChild(breakfastLinkNode);
-  
+
   var lunchLinkNode = document.createElement("area");
   lunchLinkNode.setAttribute("shape", "rect");
   lunchLinkNode.setAttribute("coords", "338,284,440,329");
   lunchLinkNode.setAttribute("onclick", "displayMenu('lunch')");
   menuImgMapNode.appendChild(lunchLinkNode);
-  
+
   var snacksLinkNode = document.createElement("area");
   snacksLinkNode.setAttribute("shape", "rect");
   snacksLinkNode.setAttribute("coords", "336,352,450,397");
   snacksLinkNode.setAttribute("onclick", "displayMenu('snacks')");
   menuImgMapNode.appendChild(snacksLinkNode);
-  
+
   var dinnerLinkNode = document.createElement("area");
   dinnerLinkNode.setAttribute("shape", "rect");
   dinnerLinkNode.setAttribute("coords", "335,416,450,464");
   dinnerLinkNode.setAttribute("onclick", "displayMenu('dinner')");
   menuImgMapNode.appendChild(dinnerLinkNode);
-  
+
   var drinksLinkNode = document.createElement("area");
   drinksLinkNode.setAttribute("shape", "rect");
   drinksLinkNode.setAttribute("coords", "333,484,448,534");
   drinksLinkNode.setAttribute("onclick", "displayMenu('drinks')");
   menuImgMapNode.appendChild(drinksLinkNode);
-  
+
   var specialsLinkNode = document.createElement("area");
   specialsLinkNode.setAttribute("shape", "rect");
   specialsLinkNode.setAttribute("coords", "328,556,458,599");
   specialsLinkNode.setAttribute("onclick", "displayMenu('specials')");
   menuImgMapNode.appendChild(specialsLinkNode);
-  
+
   customMenuNode.appendChild(menuImgMapNode);
 }
 
@@ -471,27 +471,27 @@ function displayMenu(menuType) {
     case 'breakfast':
 	  alert("here is your breakfast menu");
 	  break;
-	
+
 	case 'lunch':
 	  alert("here is your lunch menu");
 	  break;
-	
+
 	case 'snacks':
 	  alert("here is your snacks menu");
 	  break;
-	
+
 	case 'dinner':
 	  alert("here is your dinner menu");
 	  break;
-	  
+
 	case 'drinks':
 	  alert("here is your drink menu");
 	  break;
-	
+
 	case 'specials':
 	  alert("here is your specials menu");
 	  break;
-	 
+
 	default:
 	  alert("error occured when generating personalized menu. Please click on 'Go Back'");
   }
